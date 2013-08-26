@@ -26,13 +26,15 @@
 
 package com.abuabdul.castor.exercise;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.Writer;
-import java.util.Calendar;
 
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
+import org.exolab.castor.xml.Unmarshaller;
 import org.exolab.castor.xml.ValidationException;
 
 /**
@@ -41,6 +43,7 @@ import org.exolab.castor.xml.ValidationException;
  */
 public class IntrospectionCastor implements ICastor {
 	private Writer writer = null;
+	private Reader reader = null;
 
 	public IntrospectionCastor() {
 
@@ -50,41 +53,42 @@ public class IntrospectionCastor implements ICastor {
 		try {
 			writer = new FileWriter(xmlPath);
 			Marshaller.marshal(obj, writer);
+			writer.close();
 		} catch (MarshalException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.out.println("Marshalling Exception occurred");
 		} catch (ValidationException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.out.println("Validation Exception occurred");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.out.println("IO Exception occurred");
 		} finally {
-
+			writer = null;
 		}
 	}
 
-	public Object unmarshalObject(String xmlPath) {
-		return null;
+	public <T> Object unmarshalObject(Class<T> clazz, String xmlPath) {
+		Object obj = null;
+		try {
+			reader = new FileReader(xmlPath);
+			obj = Unmarshaller.unmarshal(clazz, reader);
+		} catch (MarshalException e) {
+			System.out.println(e.getMessage());
+			System.out.println("Marshalling Exception occurred");
+		} catch (ValidationException e) {
+			System.out.println(e.getMessage());
+			System.out.println("Validation Exception occurred");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			System.out.println("IO Exception occurred");
+		} finally {
+			reader = null;
+		}
+		return obj;
 	}
 
 	public void introspect(Object obj) {
 
 	}
-
-	/**
-	 * Populates the Exercise object in this method
-	 * 
-	 * @param exercise
-	 * @return exercise
-	 */
-	public Exercise populateObject(Exercise exercise) {
-		if (exercise == null) {
-			exercise = new Exercise();
-		}
-		exercise.setExerciseId(21);
-		exercise.setExerciseName("Instropection Mode");
-		exercise.setExerciseDesc("Castor Exercise for Introspection Mode");
-		exercise.setExerciseDate(Calendar.getInstance().getTime());
-
-		return exercise;
-	}
-
 }

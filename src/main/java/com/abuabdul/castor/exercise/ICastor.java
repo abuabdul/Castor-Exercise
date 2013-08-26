@@ -43,10 +43,11 @@ public interface ICastor {
 	/**
 	 * UnMarshal any xml mentioned in the xml path into a Java Object
 	 * 
+	 * @param clazz
 	 * @param xmlPath
-	 * @return Object
+	 * @return
 	 */
-	public Object unmarshalObject(String xmlPath);
+	public <T> Object unmarshalObject(Class<T> clazz, String xmlPath);
 
 	/**
 	 * Introspect the object unmarshalled from an xml. This is to just assert
