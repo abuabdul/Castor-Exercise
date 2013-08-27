@@ -88,7 +88,4 @@ public class IntrospectionCastor implements ICastor {
 		return obj;
 	}
 
-	public void introspect(Object obj) {
-
-	}
 }
