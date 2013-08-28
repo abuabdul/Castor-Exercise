@@ -2,23 +2,28 @@ package com.abuabdul.castor.exercise;
 
 import java.util.Calendar;
 
-import junit.framework.Assert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author abuabdul
  * 
  */
 public class IntrospectionApp {
+	// Define a static logger variable so that it references the
+	// Logger instance named "IntrospectionApp".
+	private static final Logger log = LogManager.getLogger(IntrospectionApp.class.getName());
 
 	public static void main(String[] args) {
+		//BasicConfigurator.c
 		IntrospectionCastor castor = new IntrospectionCastor();
 		Exercise exercise = new Exercise();
 		populateObject(exercise);
-		//Marshalling an object
+		// Marshalling an object
 		castor.marshalObject(exercise, "./Exercise.xml");
-		//Unmarshalling xml to an object
-		Exercise exer=(Exercise) castor.unmarshalObject(Exercise.class, "./Exercise.xml");
-		introspect(exer);
+		// Unmarshalling xml to an object
+		Exercise exer = (Exercise) castor.unmarshalObject(Exercise.class, "./Exercise.xml");
+		introspect(exer, exercise);
 	}
 
 	/**
@@ -38,7 +43,7 @@ public class IntrospectionApp {
 
 		return exercise;
 	}
-	
+
 	/**
 	 * Introspect the object unmarshalled from an xml. This is to just assert
 	 * the unmarshalling is done correct and Java properties are same.
@@ -46,27 +51,27 @@ public class IntrospectionApp {
 	 * @param obj
 	 */
 	public static void introspect(Exercise exercise, Exercise originalExer) {
-		
-		if(exercise==null) {
-			System.out.println("UnMarshalling failed");
+
+		if (exercise == null) {
+			log.debug("UnMarshalling failed");
 			return;
 		}
-		
-		if(21 == exercise.getExerciseId()) {
-			System.out.println("Exercise id is correct");
+
+		if (21 == exercise.getExerciseId()) {
+			log.debug("Exercise id is correct");
 		}
-		
-		if("Instropection Mode".equalsIgnoreCase(exercise.getExerciseName())) {
-			System.out.println("Exercise Name is correct");
+
+		if ("Instropection Mode".equalsIgnoreCase(exercise.getExerciseName())) {
+			log.debug("Exercise Name is correct");
 		}
-		
-		if("Castor Exercise for Introspection Mode".equalsIgnoreCase(exercise.getExerciseDesc())) {
-			System.out.println("Exercise Description is correct");
+
+		if ("Castor Exercise for Introspection Mode".equalsIgnoreCase(exercise.getExerciseDesc())) {
+			log.debug("Exercise Description is correct");
 		}
-		
-		if(originalExer.getExerciseDate().compareTo(exercise.getExerciseDate()) == 0) {
-			System.out.println("Exercise Date is correct");
+
+		if (originalExer.getExerciseDate().compareTo(exercise.getExerciseDate()) == 0) {
+			log.debug("Exercise Date is correct");
 		}
-		
+
 	}
 }

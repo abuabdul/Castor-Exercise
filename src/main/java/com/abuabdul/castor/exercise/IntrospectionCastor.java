@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
@@ -42,6 +44,10 @@ import org.exolab.castor.xml.ValidationException;
  * 
  */
 public class IntrospectionCastor implements ICastor {
+   // Define a static logger variable so that it references the
+   // Logger instance named "IntrospectionCastor".
+	private static final Logger log = LogManager.getLogger(IntrospectionCastor.class.getName());
+   
 	private Writer writer = null;
 	private Reader reader = null;
 
@@ -55,14 +61,14 @@ public class IntrospectionCastor implements ICastor {
 			Marshaller.marshal(obj, writer);
 			writer.close();
 		} catch (MarshalException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Marshalling Exception occurred");
+			log.debug(e.getMessage());
+			log.debug("Marshalling Exception occurred");
 		} catch (ValidationException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Validation Exception occurred");
+			log.debug(e.getMessage());
+			log.debug("Validation Exception occurred");
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println("IO Exception occurred");
+			log.debug(e.getMessage());
+			log.debug("IO Exception occurred");
 		} finally {
 			writer = null;
 		}
@@ -74,18 +80,17 @@ public class IntrospectionCastor implements ICastor {
 			reader = new FileReader(xmlPath);
 			obj = Unmarshaller.unmarshal(clazz, reader);
 		} catch (MarshalException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Marshalling Exception occurred");
+			log.debug(e.getMessage());
+			log.debug("Marshalling Exception occurred");
 		} catch (ValidationException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Validation Exception occurred");
+			log.debug(e.getMessage());
+			log.debug("Validation Exception occurred");
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println("IO Exception occurred");
+			log.debug(e.getMessage());
+			log.debug("IO Exception occurred");
 		} finally {
 			reader = null;
 		}
 		return obj;
 	}
-
 }
