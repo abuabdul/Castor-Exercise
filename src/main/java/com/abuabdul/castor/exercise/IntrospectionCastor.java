@@ -26,71 +26,48 @@
 
 package com.abuabdul.castor.exercise;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.Marshaller;
-import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
 
 /**
  * @author abuabdul
  * 
  */
-public class IntrospectionCastor implements ICastor {
-   // Define a static logger variable so that it references the
-   // Logger instance named "IntrospectionCastor".
+public class IntrospectionCastor extends AbstractCastor {
+	// Define a static logger variable so that it references the
+	// Logger instance named "IntrospectionCastor".
 	private static final Logger log = LogManager.getLogger(IntrospectionCastor.class.getName());
-   
-	private Writer writer = null;
-	private Reader reader = null;
 
 	public IntrospectionCastor() {
 
 	}
 
-	public void marshalObject(Object obj, String xmlPath) {
-		try {
-			writer = new FileWriter(xmlPath);
-			Marshaller.marshal(obj, writer);
-			writer.close();
-		} catch (MarshalException e) {
-			log.debug(e.getMessage());
-			log.debug("Marshalling Exception occurred");
-		} catch (ValidationException e) {
-			log.debug(e.getMessage());
-			log.debug("Validation Exception occurred");
-		} catch (IOException e) {
-			log.debug(e.getMessage());
-			log.debug("IO Exception occurred");
-		} finally {
-			writer = null;
+	@Override
+	public void introspect(Object unmarshalled, Object originalObj) {
+		Exercise exercise, originalExer = null;
+		if (unmarshalled == null || originalObj == null) {
+			log.debug("Objects passed are null");
+			return;
+		}
+
+		exercise = (Exercise) unmarshalled;
+		originalExer = (Exercise) originalObj;
+
+		if (21 == exercise.getExerciseId()) {
+			log.debug("Exercise id is correct");
+		}
+
+		if ("Instropection Mode".equalsIgnoreCase(exercise.getExerciseName())) {
+			log.debug("Exercise Name is correct");
+		}
+
+		if ("Castor Exercise for Introspection Mode".equalsIgnoreCase(exercise.getExerciseDesc())) {
+			log.debug("Exercise Description is correct");
+		}
+
+		if (originalExer.getExerciseDate().compareTo(exercise.getExerciseDate()) == 0) {
+			log.debug("Exercise Date is correct");
 		}
 	}
 
-	public <T> Object unmarshalObject(Class<T> clazz, String xmlPath) {
-		Object obj = null;
-		try {
-			reader = new FileReader(xmlPath);
-			obj = Unmarshaller.unmarshal(clazz, reader);
-		} catch (MarshalException e) {
-			log.debug(e.getMessage());
-			log.debug("Marshalling Exception occurred");
-		} catch (ValidationException e) {
-			log.debug(e.getMessage());
-			log.debug("Validation Exception occurred");
-		} catch (IOException e) {
-			log.debug(e.getMessage());
-			log.debug("IO Exception occurred");
-		} finally {
-			reader = null;
-		}
-		return obj;
-	}
 }

@@ -23,7 +23,7 @@ public class IntrospectionApp {
 		castor.marshalObject(exercise, "./Exercise.xml");
 		// Unmarshalling xml to an object
 		Exercise exer = (Exercise) castor.unmarshalObject(Exercise.class, "./Exercise.xml");
-		introspect(exer, exercise);
+		castor.introspect(exer, exercise);
 	}
 
 	/**
@@ -42,36 +42,5 @@ public class IntrospectionApp {
 		exercise.setExerciseDate(Calendar.getInstance().getTime());
 
 		return exercise;
-	}
-
-	/**
-	 * Introspect the object unmarshalled from an xml. This is to just assert
-	 * the unmarshalling is done correct and Java properties are same.
-	 * 
-	 * @param obj
-	 */
-	public static void introspect(Exercise exercise, Exercise originalExer) {
-
-		if (exercise == null) {
-			log.debug("UnMarshalling failed");
-			return;
-		}
-
-		if (21 == exercise.getExerciseId()) {
-			log.debug("Exercise id is correct");
-		}
-
-		if ("Instropection Mode".equalsIgnoreCase(exercise.getExerciseName())) {
-			log.debug("Exercise Name is correct");
-		}
-
-		if ("Castor Exercise for Introspection Mode".equalsIgnoreCase(exercise.getExerciseDesc())) {
-			log.debug("Exercise Description is correct");
-		}
-
-		if (originalExer.getExerciseDate().compareTo(exercise.getExerciseDate()) == 0) {
-			log.debug("Exercise Date is correct");
-		}
-
 	}
 }

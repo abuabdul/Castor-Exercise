@@ -41,12 +41,22 @@ public interface ICastor {
 	public void marshalObject(Object obj, String xmlPath);
 
 	/**
-	 * UnMarshal any xml mentioned in the xml path into a Java Object of type clazz
+	 * UnMarshal any xml mentioned in the xml path into a Java Object of type
+	 * clazz
 	 * 
 	 * @param clazz
 	 * @param xmlPath
 	 * @return Object
 	 */
 	public <T> Object unmarshalObject(Class<T> clazz, String xmlPath);
+
+	/**
+	 * Introspect the object unmarshalled from an xml. This is to just assert
+	 * the unmarshalling is done correct and Java properties are same.
+	 * 
+	 * @param unmarshalled
+	 * @param originalObj
+	 */
+	public void introspect(Object unmarshalled, Object originalObj);
 
 }
