@@ -65,7 +65,7 @@ public abstract class AbstractMapMode extends AbstractCastor implements IMapMode
 			log.debug("IO Exception occurred");
 			throw new CastorXmlException(e.getMessage());
 		} catch (MappingException e) {
-			log.debug("Marshalling Exception occurred");
+			log.debug("Mapping File Exception occurred");
 			throw new CastorXmlException(e.getMessage());
 		}
 		return context;
@@ -134,7 +134,7 @@ public abstract class AbstractMapMode extends AbstractCastor implements IMapMode
 	 */
 	private XMLContext getXMLContext() throws CastorXmlException {
 		if (context == null) {
-			log.debug("Cannot get XMLContext instance. Load mapping xml first before marshalling/unmarshalling");
+			log.debug("XMLContext object is null");
 			throw new CastorXmlException("Cannot get XMLContext instance. Load mapping xml first before marshalling/unmarshalling");
 		}
 		return context;

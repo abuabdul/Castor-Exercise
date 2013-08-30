@@ -24,14 +24,17 @@
  *For more information, please refer to <http://unlicense.org/>
  */
 
-package com.abuabdul.castor.exercise.map;
+package com.abuabdul.castor.exercise.app;
 
+import java.net.URL;
 import java.util.Calendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
+import com.abuabdul.castor.exercise.map.IMapMode;
+import com.abuabdul.castor.exercise.map.MapModeCastor;
 import com.abuabdul.castor.exercise.model.Exercise;
 
 /**
@@ -41,7 +44,7 @@ import com.abuabdul.castor.exercise.model.Exercise;
 public class MapModeCastorApp {
 
 	// Define a static logger variable so that it references the
-	// Logger instance named "IntrospectionApp".
+	// Logger instance named "MapModeCastorApp".
 	private static final Logger log = LogManager.getLogger(MapModeCastorApp.class.getName());
 
 	public static void main(String[] args) {
@@ -52,16 +55,21 @@ public class MapModeCastorApp {
 			Exercise exercise = new Exercise();
 			populateObject(exercise);
 			// Load mapping xml
-			castor.loadMapping("./ExerciseMapping.xml");
+			URL mappingUrl = MapModeCastorApp.class.getClassLoader().getResource("ExerciseMapping.xml");
+			log.debug("Mapping file path " + mappingUrl.getPath());
+			castor.loadMapping(mappingUrl.getPath());
 			// Marshalling an object
-			castor.marshalObject(exercise, "./Exercise.xml");
+			castor.marshalObject(exercise, "./ExerciseMappingInstance.xml");
 			// Unmarshalling xml to an object
 			Exercise exer = (Exercise) castor.unmarshalObject(Exercise.class, "./ExerciseMappingInstance.xml");
 			// Introspect the unmarshalled object with original
 			castor.introspect(exer, exercise);
 		} catch (CastorXmlException cas) {
-			log.debug("Exception occurred at MapModeCastorApp");
+			log.debug("Castor Xml Exception occurred at MapModeCastorApp");
 			log.debug(cas.getMessage());
+		} catch (Exception ex) {
+			log.debug("Exception occurred at MapModeCastorApp");
+			log.debug(ex.getMessage());
 		}
 	}
 

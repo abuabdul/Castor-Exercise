@@ -1,10 +1,12 @@
-package com.abuabdul.castor.exercise;
+package com.abuabdul.castor.exercise.app;
 
 import java.util.Calendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.abuabdul.castor.exercise.ICastor;
+import com.abuabdul.castor.exercise.IntrospectionCastor;
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 import com.abuabdul.castor.exercise.model.Exercise;
 
@@ -32,8 +34,11 @@ public class IntrospectionApp {
 			// Introspect the unmarshalled object with original
 			castor.introspect(exer, exercise);
 		} catch (CastorXmlException cas) {
-			log.debug("Exception occurred at Instropection App");
+			log.debug("Castor Xml Exception occurred at InstropectionApp");
 			log.debug(cas.getMessage());
+		} catch (Exception ex) {
+			log.debug("Exception occurred at InstropectionApp");
+			log.debug(ex.getMessage());
 		}
 	}
 

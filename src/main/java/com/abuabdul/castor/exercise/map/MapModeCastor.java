@@ -38,7 +38,7 @@ import com.abuabdul.castor.exercise.model.Exercise;
 public class MapModeCastor extends AbstractMapMode {
 
 	// Define a static logger variable so that it references the
-	// Logger instance named "IntrospectionCastor".
+	// Logger instance named "MapModeCastor".
 	private static final Logger log = LogManager.getLogger(MapModeCastor.class.getName());
 
 	public MapModeCastor() {
@@ -56,15 +56,15 @@ public class MapModeCastor extends AbstractMapMode {
 		exercise = (Exercise) unmarshalled;
 		originalExer = (Exercise) originalObj;
 
-		if (21 == exercise.getExerciseId()) {
+		if (exercise.getExerciseId() == 32) {
 			log.debug("Exercise id is correct");
 		}
 
-		if ("Instropection Mode".equalsIgnoreCase(exercise.getExerciseName())) {
+		if ("Mapping Mode".equalsIgnoreCase(exercise.getExerciseName())) {
 			log.debug("Exercise Name is correct");
 		}
 
-		if ("Castor Exercise for Introspection Mode".equalsIgnoreCase(exercise.getExerciseDesc())) {
+		if ("Castor Exercise for Mapping Mode".equalsIgnoreCase(exercise.getExerciseDesc())) {
 			log.debug("Exercise Description is correct");
 		}
 
