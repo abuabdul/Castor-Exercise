@@ -24,44 +24,26 @@
  *For more information, please refer to <http://unlicense.org/>
  */
 
-package com.abuabdul.castor.exercise;
+package com.abuabdul.castor.exercise.map;
 
+import org.exolab.castor.xml.XMLContext;
+
+import com.abuabdul.castor.exercise.ICastor;
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 
 /**
  * @author abuabdul
  * 
  */
-public interface ICastor {
+public interface IMapMode extends ICastor {
 
 	/**
-	 * Marshal any Java Object into an xml mentioned in the xml path.
+	 * This method loads the mapping xml to override the default convention of
+	 * Castor and use the mapping file to create XMLContext object
 	 * 
-	 * @param obj
-	 * @param xmlPath
+	 * @param mappingXml
+	 * @return XMLContext
 	 * @throws CastorXmlException
 	 */
-	public void marshalObject(Object obj, String xmlPath) throws CastorXmlException;
-
-	/**
-	 * UnMarshal any xml mentioned in the xml path into a Java Object of type
-	 * clazz
-	 * 
-	 * @param clazz
-	 * @param xmlPath
-	 * @return Object
-	 * @throws CastorXmlException
-	 */
-	public <T> Object unmarshalObject(Class<T> clazz, String xmlPath) throws CastorXmlException;
-
-	/**
-	 * Introspect the object unmarshalled from an xml. This is to just assert
-	 * the unmarshalling is done correct and Java properties are same.
-	 * Implementation of this method should cast Object into their own objects.
-	 * 
-	 * @param unmarshalled
-	 * @param originalObj
-	 */
-	public void introspect(Object unmarshalled, Object originalObj);
-
+	public XMLContext loadMapping(String mappingXml) throws CastorXmlException;
 }

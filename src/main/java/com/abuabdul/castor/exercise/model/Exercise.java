@@ -1,4 +1,4 @@
-package com.abuabdul.castor.exercise;
+package com.abuabdul.castor.exercise.model;
 
 import java.util.Date;
 

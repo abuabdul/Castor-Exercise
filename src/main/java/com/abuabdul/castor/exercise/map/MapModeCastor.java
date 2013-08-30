@@ -24,25 +24,24 @@
  *For more information, please refer to <http://unlicense.org/>
  */
 
-package com.abuabdul.castor.exercise;
+package com.abuabdul.castor.exercise.map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.abuabdul.castor.exercise.model.Exercise;
 
-
 /**
  * @author abuabdul
  * 
  */
-public class IntrospectionCastor extends AbstractCastor {
-	
+public class MapModeCastor extends AbstractMapMode {
+
 	// Define a static logger variable so that it references the
 	// Logger instance named "IntrospectionCastor".
-	private static final Logger log = LogManager.getLogger(IntrospectionCastor.class.getName());
+	private static final Logger log = LogManager.getLogger(MapModeCastor.class.getName());
 
-	public IntrospectionCastor() {
+	public MapModeCastor() {
 
 	}
 

@@ -24,44 +24,28 @@
  *For more information, please refer to <http://unlicense.org/>
  */
 
-package com.abuabdul.castor.exercise;
-
-import com.abuabdul.castor.exercise.exception.CastorXmlException;
+package com.abuabdul.castor.exercise.exception;
 
 /**
  * @author abuabdul
  * 
  */
-public interface ICastor {
+public class CastorXmlException extends Exception {
 
 	/**
-	 * Marshal any Java Object into an xml mentioned in the xml path.
 	 * 
-	 * @param obj
-	 * @param xmlPath
-	 * @throws CastorXmlException
 	 */
-	public void marshalObject(Object obj, String xmlPath) throws CastorXmlException;
+	private static final long serialVersionUID = 324234L;
 
-	/**
-	 * UnMarshal any xml mentioned in the xml path into a Java Object of type
-	 * clazz
-	 * 
-	 * @param clazz
-	 * @param xmlPath
-	 * @return Object
-	 * @throws CastorXmlException
-	 */
-	public <T> Object unmarshalObject(Class<T> clazz, String xmlPath) throws CastorXmlException;
+	public CastorXmlException() {
 
-	/**
-	 * Introspect the object unmarshalled from an xml. This is to just assert
-	 * the unmarshalling is done correct and Java properties are same.
-	 * Implementation of this method should cast Object into their own objects.
-	 * 
-	 * @param unmarshalled
-	 * @param originalObj
-	 */
-	public void introspect(Object unmarshalled, Object originalObj);
+	}
 
+	public CastorXmlException(String message) {
+		super(message);
+	}
+
+	public CastorXmlException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }
