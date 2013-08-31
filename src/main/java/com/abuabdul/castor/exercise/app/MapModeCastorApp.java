@@ -34,10 +34,12 @@ import org.apache.logging.log4j.Logger;
 
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 import com.abuabdul.castor.exercise.map.IMapMode;
-import com.abuabdul.castor.exercise.map.MapModeCastor;
 import com.abuabdul.castor.exercise.model.Exercise;
 
 /**
+ * This is an example class that demonstrates the use of Castor Exercise API for
+ * map mode. 
+ * 
  * @author abuabdul
  * 
  */
@@ -49,11 +51,11 @@ public class MapModeCastorApp {
 
 	public static void main(String[] args) {
 		try {
-			// instance of MapModeCastor
-			IMapMode castor = new MapModeCastor();
-			// Exercise object
+			// Populate Exercise object
 			Exercise exercise = new Exercise();
 			populateObject(exercise);
+			// instance of MapModeCastor
+			IMapMode castor = new MapModeCastor();
 			// Load mapping xml
 			URL mappingUrl = MapModeCastorApp.class.getClassLoader().getResource("ExerciseMapping.xml");
 			log.debug("Mapping file path " + mappingUrl.getPath());

@@ -24,20 +24,23 @@
  *For more information, please refer to <http://unlicense.org/>
  */
 
-package com.abuabdul.castor.exercise;
+package com.abuabdul.castor.exercise.app;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.abuabdul.castor.exercise.AbstractCastor;
 import com.abuabdul.castor.exercise.model.Exercise;
 
-
 /**
+ * This class extends the abstract parent class of Castor Exercise API.
+ * It provides implementation for introspect behavior. 
+ * 
  * @author abuabdul
  * 
  */
 public class IntrospectionCastor extends AbstractCastor {
-	
+
 	// Define a static logger variable so that it references the
 	// Logger instance named "IntrospectionCastor".
 	private static final Logger log = LogManager.getLogger(IntrospectionCastor.class.getName());
@@ -57,7 +60,7 @@ public class IntrospectionCastor extends AbstractCastor {
 		exercise = (Exercise) unmarshalled;
 		originalExer = (Exercise) originalObj;
 
-		if (21 == exercise.getExerciseId()) {
+		if (exercise.getExerciseId() == 21) {
 			log.debug("Exercise id is correct");
 		}
 

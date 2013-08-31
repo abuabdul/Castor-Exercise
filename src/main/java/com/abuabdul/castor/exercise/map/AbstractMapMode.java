@@ -44,6 +44,9 @@ import com.abuabdul.castor.exercise.AbstractCastor;
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 
 /**
+ * This is abstract parent class for Map mode in Castor Exercise API. It extends
+ * parent class, AbstractCastor, and implements IMapMode.
+ * 
  * @author abuabdul
  * 
  */

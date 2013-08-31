@@ -29,6 +29,9 @@ package com.abuabdul.castor.exercise;
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 
 /**
+ * Interface for Castor Exercise API. It contains the basic operations for
+ * marshalling/unmarshalling xml into an object and vice versa.
+ * 
  * @author abuabdul
  * 
  */

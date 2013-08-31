@@ -24,14 +24,18 @@
  *For more information, please refer to <http://unlicense.org/>
  */
 
-package com.abuabdul.castor.exercise.map;
+package com.abuabdul.castor.exercise.app;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.abuabdul.castor.exercise.map.AbstractMapMode;
 import com.abuabdul.castor.exercise.model.Exercise;
 
 /**
+ * This class extends the abstract parent class of Map mode in Castor Exercise API.
+ * It provides implementation for introspect behavior.
+ * 
  * @author abuabdul
  * 
  */

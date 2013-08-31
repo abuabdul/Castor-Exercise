@@ -27,13 +27,16 @@
 package com.abuabdul.castor.exercise.exception;
 
 /**
+ * This is the exception class for Castor Exercise API. It is used to throw
+ * exceptions when it encounters exception in Castor Exercise API.
+ * 
  * @author abuabdul
  * 
  */
 public class CastorXmlException extends Exception {
 
 	/**
-	 * 
+	 * Serial Version ID
 	 */
 	private static final long serialVersionUID = 324234L;
 

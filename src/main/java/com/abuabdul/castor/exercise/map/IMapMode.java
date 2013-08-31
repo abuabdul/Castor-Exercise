@@ -32,6 +32,9 @@ import com.abuabdul.castor.exercise.ICastor;
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 
 /**
+ * Map Mode Interface for Castor Exercise API. It contains the basic operation
+ * for loading mapping xml. It extends parent interface ICastor.
+ * 
  * @author abuabdul
  * 
  */
@@ -39,7 +42,7 @@ public interface IMapMode extends ICastor {
 
 	/**
 	 * This method loads the mapping xml to override the default convention of
-	 * Castor and use the mapping file to create XMLContext object
+	 * Castor, and uses the mapping file to create XMLContext object
 	 * 
 	 * @param mappingXml
 	 * @return XMLContext

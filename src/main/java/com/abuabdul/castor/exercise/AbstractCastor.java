@@ -42,6 +42,8 @@ import org.exolab.castor.xml.ValidationException;
 import com.abuabdul.castor.exercise.exception.CastorXmlException;
 
 /**
+ * This is abstract parent class for all the classes that implement Castor Exercise API
+ * 
  * @author abuabdul
  * 
  */
